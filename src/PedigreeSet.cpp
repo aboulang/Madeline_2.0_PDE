@@ -66,6 +66,7 @@ void PedigreeSet::_checkParentChildDOB(){
 	
 	std::set<Pedigree*,comparePedigrees>::const_iterator it = _pedigrees.begin();
 	while(it != _pedigrees.end()){
+		std::cout << "Family " << (*it)->getId() << std::endl;
 		(*it)->checkParentChildDOB();
 		++it;
 	}
@@ -79,6 +80,7 @@ void PedigreeSet::_checkPregnancyStateValidity(){
 	
 	std::set<Pedigree*,comparePedigrees>::const_iterator it = _pedigrees.begin();
 	while(it != _pedigrees.end()){
+		std::cout << "Family " << (*it)->getId() << std::endl;
 		(*it)->checkPregnancyStateValidity();
 		++it;
 	}
@@ -91,7 +93,9 @@ void PedigreeSet::_checkPregnancyStateValidity(){
 void PedigreeSet::_computeWidths(const std::string& sortField,bool dobSortOrder ){
 	
 	std::set<Pedigree*,comparePedigrees>::const_iterator it = _pedigrees.begin();
+	std::cout << "Family " << (*it)->getId() << std::endl;
 	while(it != _pedigrees.end()){
+		std::cout << "Family " << (*it)->getId() << std::endl;
 		(*it)->computePedigreeWidth(sortField,dobSortOrder);
 		
 		++it;
@@ -107,6 +111,7 @@ void PedigreeSet::_determineFoundingGroups(){
 	
 	std::set<Pedigree*,comparePedigrees>::const_iterator it = _pedigrees.begin();
 	while(it != _pedigrees.end()){
+		std::cout << "Family " << (*it)->getId() << std::endl;
 		(*it)->determineFoundingGroups();
 		++it;
 	}
@@ -120,6 +125,7 @@ void PedigreeSet::_establishConnections(){
 	
 	std::set<Pedigree*,comparePedigrees>::const_iterator it = _pedigrees.begin();
 	while(it != _pedigrees.end()){
+		std::cout << "Family " << (*it)->getId() << std::endl;
 		(*it)->addIdentifiedMissingParents();
 		(*it)->establishIndividualConnections();
 		(*it)->reportUnconnectedIndividuals();
@@ -135,6 +141,7 @@ void PedigreeSet::_setCoreOptionalFields(const DataTable* pedigreeTable){
 	
 	std::set<Pedigree*,comparePedigrees>::const_iterator it = _pedigrees.begin();
 	while(it != _pedigrees.end()){
+		std::cout << "Family " << (*it)->getId() << std::endl;
 		(*it)->setCoreOptionalFields(pedigreeTable);
 		++it;
 	}
@@ -192,6 +199,7 @@ void PedigreeSet::addPedigreesFromDataTable(const DataTable * p_pedigreeTable, u
 	while(index < numberOfRows){
 		
 		currentFamily = familyIdColumn->get(index);
+		std::cout << "Family " << currentFamily << std::endl;
 		if(currentFamily == "."){
 			Warning("PedigreeSet::addPedigreesFromDataTable()",
 			        "Family Id is missing for individual %s and will be ignored.",
